@@ -14,10 +14,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 function repro()
-	-- Create the buffer
 	local bufnr = vim.api.nvim_create_buf(false, true)
-
-	-- Set up the contents, using treesitter for markdown
+	vim.bo[bufnr].bufhidden = 'wipe'
 	vim.bo[bufnr].filetype = 'markdown'
 	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "" })
 
@@ -28,7 +26,4 @@ function repro()
 		row = 1,
 		width = 1,
 	})
-
-	-- disable folding
-	vim.bo[bufnr].bufhidden = 'wipe'
 end
