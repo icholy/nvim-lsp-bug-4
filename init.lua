@@ -1,3 +1,6 @@
+
+local winid
+
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown" },
 	callback = function()
@@ -5,10 +8,12 @@ vim.api.nvim_create_autocmd("FileType", {
 			name = "marksman",
 			cmd = { "marksman" },
 		})
-		vim.api.nvim_feedkeys("jk", "n", true)
+		vim.schedule(function ()
+			vim.api.nvim_win_close(winid, true)
+		end)
 	end
 })
 
 function repro()
-	vim.lsp.util.open_floating_preview({"hello"}, "markdown")
+	_, winid = vim.lsp.util.open_floating_preview({"hello"}, "markdown")
 end
