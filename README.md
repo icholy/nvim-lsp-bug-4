@@ -5,5 +5,5 @@
 ## Steps
 
 1. Install `marksman` LSP.
-1. `nvim --clean -u init.lua test.txt`
+1. `nvim --clean -u init.lua`
 5. `:lua repro()`
